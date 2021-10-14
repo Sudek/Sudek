@@ -1,4 +1,4 @@
-We have to validate fields in the object according to some logic. I provide an example of this class.
+Let's consider, we have to validate fields in the object according to some logic. I provide an example of this class.
 
 ```java
 @Data
@@ -9,8 +9,9 @@ public class Example {
     private String d;
 }
 ```
-All fields can be nullable. If field "a" is present then field "b" has to be present too. If field "c" is blank then field "d" has to be blank too.
+All fields are nullable. If field "a" is present then field "b" has to be present too. If field "c" is blank then field "d" has to be blank too.
 My first variant is
+
 ```java
 public class Validator {
 
@@ -25,7 +26,9 @@ public class Validator {
 }
 ```
 
-We get a npe when one of the fields is null. Hm, I can add logic to prevent adding null objects to the list. Let's see what happens.
+Assume, once we receive `null` for a field, in this case we get NPE. The straightforward solution to prevent the error will be the null check definition before adding a value to the list.
+Let's see what happens.
+
 ```java
 public class Validator {
 
@@ -46,6 +49,7 @@ public class Validator {
 
 It works but it looks a little bit clumsy. Do we have a way to do lazy initialization?
 One of the differences between collections and streams is that streams support lazy initialization.
+
 ```java
 public class Validator {
 
@@ -60,4 +64,7 @@ public class Validator {
     }
 }
 ```
-It looks much better! I think this example is good to provide differences between types of initializations in collections and streams.
+
+It looks much better! I think this example is good to demonstrate the differences between types of initializations in collections and streams.
+
+Thanks for the comments [Artem Ptushkin](https://github.com/artemptushkin)
